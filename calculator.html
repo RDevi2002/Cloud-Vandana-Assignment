@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    button {
+      width: 48px;
+      height: 48px;
+      margin: 2px;
+      font-size: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Style the number buttons in black */
+    button.number {
+      background-color: black;
+      color: white;
+    }
+
+    /* Style the "." and "=" buttons in black */
+    button.number.special {
+      background-color: black;
+      color: white;
+    }
+
+    /* Style the "+", "-", "*", and "/" buttons in gray */
+    button.operator {
+      background-color: gray;
+      color: white;
+    }
+
+    /* Style the "C" button in green */
+    button.clear {
+      background-color: teal;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+    <button class="clear" onclick="clearDisplay()">AC</button>
+    <br>
+    <div class="button-row">
+      <button class="number" onclick="appendToDisplay('7')">7</button>
+      <button class="number" onclick="appendToDisplay('8')">8</button>
+      <button class="number" onclick="appendToDisplay('9')">9</button>
+      <button class="operator" onclick="appendToDisplay('+')">+</button>
+    </div>
+    <div class="button-row">
+      <button class="number" onclick="appendToDisplay('4')">4</button>
+      <button class="number" onclick="appendToDisplay('5')">5</button>
+      <button class="number" onclick="appendToDisplay('6')">6</button>
+      <button class="operator" onclick="appendToDisplay('-')">-</button>
+    </div>
+    <div class="button-row">
+      <button class="number" onclick="appendToDisplay('1')">1</button>
+      <button class="number" onclick="appendToDisplay('2')">2</button>
+      <button class="number" onclick="appendToDisplay('3')">3</button>
+      <button class="operator" onclick="appendToDisplay('*')">*</button>
+    </div>
+    <div class="button-row">
+      <button class="number special" onclick="appendToDisplay('.')">.</button>
+      <button class="number special" onclick="appendToDisplay('0')">0</button>
+      <button class="number special" onclick="calculateResult()">=</button>
+      <button class="operator" onclick="appendToDisplay('/')">/</button>
+    </div>
+  </div>
+
+  <script>
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function calculateResult() {
+      const expression = document.getElementById('display').value;
+      const result = eval(expression);
+
+      if (result !== undefined) {
+        document.getElementById('display').value = result;
+      } else {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
